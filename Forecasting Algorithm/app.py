@@ -9,7 +9,7 @@ from skforecast.ForecasterAutoreg import ForecasterAutoreg
 app = Flask(__name__)
 
 # Define the folder where uploaded files will be stored
-UPLOAD_FOLDER = 'uploads'
+UPLOAD_FOLDER = 'upload'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # Define the allowed file extensions
@@ -49,7 +49,7 @@ def upload():
 
 @app.route('/map_columns/<filename>', methods=['GET', 'POST'])
 def map_columns(filename):
-    # Read the CSV file into a pandas DataFrame
+    # Read the CSV file into a pandas DataFrame b
     file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
     df = pd.read_csv(file_path)
 
@@ -119,4 +119,4 @@ def success():
     return render_template('success.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
