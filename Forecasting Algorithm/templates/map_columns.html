@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map Columns</title>
+</head>
+<body>
+<h1>Map Columns</h1>
+<form method="post">
+    <label for="date_column">Select Date Column:</label>
+    <select name="date_column" id="date_column">
+        {% for column in columns %}
+        <option value="{{ column }}">{{ column }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <label for="y_column">Select Y Column:</label>
+    <select name="y_column" id="y_column">
+        {% for column in columns %}
+        <option value="{{ column }}">{{ column }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <label for="filter_column">Select Filter Column:</label>
+    <select name="filter_column" id="filter_column">
+        <option value="">None</option>
+        {% for column in columns %}
+        <option value="{{ column }}">{{ column }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <label for="clave">Clave:</label>
+    <input type="text" name="clave" id="clave">
+    <br>
+    <label for="resampling_rule">Resampling Rule:</label>
+    <select name="resampling_rule" id="resampling_rule">
+        <option value="D">Daily</option>
+        <option value="W">Weekly</option>
+        <option value="M">Monthly</option>
+        <!-- Add more options as needed -->
+    </select>
+    <br>
+    <label for="steps">Number of Steps:</label>
+    <input type="number" name="steps" id="steps" value="10" min="1">
+    <br>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
