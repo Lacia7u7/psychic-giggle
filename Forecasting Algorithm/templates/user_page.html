@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        h1 {
+            margin-top: 20px;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="{{ url_for('datasets') }}">Datasets</a></li>
+        <li><a href="{{ url_for('models') }}">Models</a></li>
+        <li><a href="{{ url_for('predict') }}">Predict</a></li>
+        <li><a href="{{ url_for('results') }}">Results</a></li>
+        <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        <li><a href="{{ url_for('model_description') }}">Model Description</a></li>
+        <li><a href="{{ url_for('user_page') }}">User Page</a></li>
+    </ul>
+</nav>
+<div class="container">
+    <h1>Welcome, {{ user.name }}</h1>
+    <p>Username: {{ user.username }}</p>
+    <p>Email: {{ user.email }}</p>
+</div>
+</body>
+</html>

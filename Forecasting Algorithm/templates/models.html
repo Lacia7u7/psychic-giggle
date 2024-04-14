@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Models</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        h1 {
+            margin-top: 20px;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="{{ url_for('datasets') }}">Datasets</a></li>
+        <li><a href="{{ url_for('models') }}">Models</a></li>
+        <li><a href="{{ url_for('predict') }}">Predict</a></li>
+        <li><a href="{{ url_for('results') }}">Results</a></li>
+        <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        <li><a href="{{ url_for('model_description') }}">Model Description</a></li>
+        <li><a href="{{ url_for('user_page') }}">User Page</a></li>
+    </ul>
+</nav>
+<div class="container">
+    <h1>Choose a Model</h1>
+    <form action="{{ url_for('save_model') }}" method="post">
+        <label for="regressor">Select a Regressor:</label>
+        <select name="regressor" id="regressor">
+            {% for regressor in regressors %}
+            <option value="{{ regressor }}">{{ regressor }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <div id="parameters">
+            <!-- Parameters will be dynamically populated here -->
+        </div>
+        <br>
+        <button type="submit">Save Model</button>
+    </form>
+</div>
+<div class="container">
+    <h1>Saved Models</h1>
+    <table>
+        <tr>
+            <th>Regressor</th>
+            <th>Parameters</th>
+            <th>Train Parameters</th>
+            <th>Upload Date</th>
+            <th>Actions</th>
+        </tr>
+        {% for model in user_saved_models %}
+        <tr>
+            <td>{{ model.regressor }}</td>
+            <td>{{ model.params }}</td>
+            <td>{{ model.train_params }}</td>
+            <td>{{ model.upload_date }}</td>
+            <td><a href="{{ model.file_url }}">Download Model</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+<script>
+    // JavaScript to populate parameters based on selected regressor
+    document.getElementById('regressor').addEventListener('change', function() {
+        var selectedRegressor = this.value;
+        var regressors = {{ regressors|tojson }};
+        var parameters = regressors[selectedRegressor];
+        var parametersDiv = document.getElementById('parameters');
+        parametersDiv.innerHTML = '';
+        for (var param in parameters) {
+            if (parameters.hasOwnProperty(param)) {
+                var label = document.createElement('label');
+                label.textContent = parameters[param].label + ': ';
+                var input = document.createElement('input');
+                input.setAttribute('type', parameters[param].type);
+                input.setAttribute('name', param);
+                if (parameters[param].required) {
+                    input.setAttribute('required', 'required');
+                }
+                parametersDiv.appendChild(label);
+                parametersDiv.appendChild(input);
+                parametersDiv.appendChild(document.createElement('br'));
+            }
+        }
+    });
+</script>
+</body>
+</html>

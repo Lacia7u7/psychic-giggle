@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Plot</title>
+    <!-- Include necessary libraries for Plotly or Bokeh -->
+    <!-- Example for Plotly -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+<div id="plot"></div>
+<script>
+        // JavaScript code to generate Plotly plot
+        var dates = {{ dates | tojson }};
+        var values = {{ values | tojson }};
+
+        var trace = {
+            x: dates,
+            y: values,
+            type: 'scatter',
+            mode: 'lines+markers',
+            name: 'Actual'
+        };
+
+        var layout = {
+            title: 'Interactive Plot',
+            xaxis: { title: 'Date' },
+            yaxis: { title: 'Value' }
+        };
+
+        Plotly.newPlot('plot', [trace], layout);
+    </script>
+</body>
+</html>

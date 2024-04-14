@@ -1,0 +1,26 @@
+{
+  "LGBMRegressor": {
+    "n_estimators": {
+      "label": "Number of Estimators",
+      "type": "int",
+      "required": true
+    },
+    "max_depth": {
+      "label": "Max Depth",
+      "type": "int",
+      "required": true
+    }
+  },
+  "RandomForestRegressor": {
+    "n_estimators": {
+      "label": "Number of Estimators",
+      "type": "int",
+      "required": true
+    },
+    "max_depth": {
+      "label": "Max Depth",
+      "type": "int",
+      "required": true
+    }
+  }
+}
