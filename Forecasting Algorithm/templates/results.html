@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forecast Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        h1 {
+            margin-top: 20px;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="{{ url_for('datasets') }}">Datasets</a></li>
+        <li><a href="{{ url_for('models') }}">Models</a></li>
+        <li><a href="{{ url_for('predict') }}">Predict</a></li>
+        <li><a href="{{ url_for('results') }}">Results</a></li>
+        <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        <li><a href="{{ url_for('model_description') }}">Model Description</a></li>
+        <li><a href="{{ url_for('user_page') }}">User Page</a></li>
+    </ul>
+</nav>
+<h1>Forecast Results</h1>
+<table border="1">
+    <tr>
+        <th>Forecast Root</th>
+        <th>Model Root</th>
+        <th>Dataset Root</th>
+        <th>Train Params</th>
+        <th>Date and Time</th>
+        <th>Metrics</th>
+        <th>Download CSV</th>
+        <th>View Plot</th>
+    </tr>
+    {% for forecast in forecasts %}
+    <tr>
+        <td>{{ forecast.forecast_root }}</td>
+        <td>{{ forecast.model_root }}</td>
+        <td>{{ forecast.dataset_root }}</td>
+        <td>{{ forecast.train_params }}</td>
+        <td>{{ forecast.datetime }}</td>
+        <td class="metrics-cell">
+            <strong>MSE:</strong> {{ forecast.metrics.mse }}<br>
+            <strong>R2:</strong> {{ forecast.metrics.r2 }}<br>
+            <strong>MAE:</strong> {{ forecast.metrics.mae }}<br>
+            <strong>RMSE:</strong> {{ forecast.metrics.rmse }}
+        </td>
+        <td><a href="{{ forecast.csv_url }}">Download CSV</a></td>
+        <td><a href="{{ forecast.plot_url }}">View Plot</a></td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

@@ -8,6 +8,8 @@
 <body>
 <h1>Success!</h1>
 <p>Your forecast plot is ready. Click the link below to view it:</p>
-<a href="{{ url_for('plotly_plot', filename='forecast_plot_8f44aae2.html') }}">View Forecast Plot</a>
+<a href="/plotly_plot?plot_url={{ plotly_plot_url }}" target="_blank">View Forecast Plot</a>
+<p>Forecast Root: {{ forecast_root }}</p>
+<p>Download forecast as CSV: <a href="{{ csv_url }}">Download CSV</a></p>
 </body>
 </html>

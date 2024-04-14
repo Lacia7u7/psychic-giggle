@@ -68,6 +68,7 @@
 <h2>User Saved Models</h2>
 <table>
     <tr>
+        <th>Name</th>
         <th>Regressor</th>
         <th>Parameters</th>
         <th>Train Parameters</th>
@@ -76,11 +77,12 @@
     </tr>
     {% for model in models %}
     <tr>
+        <td>{{ model.name}}</td>
         <td>{{ model.regressor }}</td>
         <td>{{ model.params }}</td>
         <td>{{ model.train_params }}</td>
         <td>{{ model.upload_date }}</td>
-        <td><a href="{{ model.file_path }}">Download Model</a></td>
+        <td><a href="{{ model.file_url }}">Download Model</a></td>
     </tr>
     {% endfor %}
 </table>
@@ -89,6 +91,7 @@
 <table>
     <tr>
         <th>Name</th>
+        <th>File Name</th>
         <th>Upload Date</th>
         <th>Rows</th>
         <th>Columns</th>
@@ -97,6 +100,7 @@
     {% for dataset in datasets %}
     {% set dataset_dict = dataset.to_dict() %}
     <tr>
+        <td>{{ dataset_dict['name'] }}</td>
         <td>{{ dataset_dict['original_name'] }}</td>
         <td>{{ dataset_dict['upload_date'] }}</td>
         <td>{{ dataset_dict['rows'] }}</td>
@@ -108,18 +112,18 @@
 
 <h1>Predict</h1>
 <form action="{{ url_for('prepare_train_mapping') }}" enctype="multipart/form-data" method="post" onsubmit="return confirm('Are you sure you want to execute the prediction?');">
-    <label for="model">Select Model:</label>
-    <select name="model" id="model">
+    <label for="model_root">Select Model:</label>
+    <select name="model_root" id="model_root">
         {% for model in models %}
-        <option value="{{ model.file_url }}">{{ model.regressor }}</option>
+        <option value="{{ model.root }}">{{ model.name }}</option>
         {% endfor %}
     </select>
     <br>
-    <label for="dataset">Select Dataset:</label>
-    <select name="dataset" id="dataset">
+    <label for="dataset_root">Select Dataset:</label>
+    <select name="dataset_root" id="dataset_root">
         {% for dataset in datasets %}
         {% set dataset_dict = dataset.to_dict() %}
-        <option value="{{ dataset_dict['file_url'] }}">{{dataset_dict['original_name']}}</option>
+        <option value="{{ dataset_dict['root'] }}">{{dataset_dict['name']}}</option>
         {% endfor %}
     </select>
     <br>
