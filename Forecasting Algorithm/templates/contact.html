@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Information</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .contact-info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+    }
+
+    .contact-info div {
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .icon {
+        margin-right: 5px;
+        color: #007bff; /* Change color here */
+    }
+
+    @media (max-width: 600px) {
+        .contact-info {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+    nav {
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+    }
+    nav ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+    nav ul li {
+        display: inline;
+        margin-right: 10px;
+    }
+    nav ul li a {
+        color: #fff;
+        text-decoration: none;
+    }
+</style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('datasets') }}">Datasets</a></li>
+            <li><a href="{{ url_for('models') }}">Models</a></li>
+            <li><a href="{{ url_for('predict') }}">Predict</a></li>
+            <li><a href="{{ url_for('results') }}">Results</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            <li><a href="{{ url_for('model_description') }}">Model Description</a></li>
+            <li><a href="{{ url_for('user_page') }}">User Page</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Contact Information</h1>
+        <div class="contact-info">
+            <div>
+                <h2><i class="fas fa-map-marker-alt icon"></i>Address</h2>
+                <p>Universidad Panamericana: Av. Josemaría Escrivá de Balaguer 101, Villa Bonaterra</p>
+                <p>Aguascalientes, Aguascalientes, 20296</p>
+            </div>
+            <div>
+                <h2><i class="fas fa-phone icon"></i>Phone</h2>
+                <p>+52 449 106 3905</p>
+            </div>
+            <div>
+                <h2><i class="fas fa-envelope icon"></i>Email</h2>
+                <p>0238526@up.edu.mx</p>
+                <p>0233337@up.edu.mx</p>
+            </div>
+            <div>
+                <h2><i class="fab fa-twitter icon"></i>Social Media</h2>
+                <p>Twitter: @DavidWalls</p>
+                <p>Facebook: @CarlosAlvarez</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

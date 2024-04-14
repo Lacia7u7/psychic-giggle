@@ -32,7 +32,7 @@ login_manager.init_app(app)
 
 
 #root folder
-ROOT_FOLDER = "E:\\Data\\UP\\8vo Semestre\\Big Data\\Forecasting Algorithm"
+ROOT_FOLDER = ".\\"
 # Define the folder where uploaded files will be stored
 UPLOAD_FOLDER = 'upload'
 STATIC_FOLDER = "static"

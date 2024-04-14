@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Descripción de Modelos</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+    .container {
+        margin-top: 30px;
+    }
+    .card {
+        margin-bottom: 20px;
+    }
+    .video-container {
+        position: relative;
+        padding-bottom: 56.25%; /* Aspect ratio 16:9 */
+        height: 0;
+        overflow: hidden;
+    }
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    nav {
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+    }
+    nav ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+    nav ul li {
+        display: inline;
+        margin-right: 10px;
+    }
+    nav ul li a {
+        color: #fff;
+        text-decoration: none;
+    }
+</style>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="{{ url_for('datasets') }}">Datasets</a></li>
+        <li><a href="{{ url_for('models') }}">Models</a></li>
+        <li><a href="{{ url_for('predict') }}">Predict</a></li>
+        <li><a href="{{ url_for('results') }}">Results</a></li>
+        <li><a href="{{ url_for('contact') }}">Contact</a></li>
+        <li><a href="{{ url_for('model_description') }}">Model Description</a></li>
+        <li><a href="{{ url_for('user_page') }}">User Page</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">LGBM Regressor</h5>
+                    <p class="card-text">LGBM Regressor es útil en situaciones donde se requiere una alta eficiencia y rapidez en conjuntos de datos grandes. Algunos casos de uso comunes incluyen:</p>
+                    <ul>
+                        <li>Predicción de precios de acciones en tiempo real.</li>
+                        <li>Predicción de la demanda de productos en la industria minorista.</li>
+                        <li>Análisis de riesgo crediticio en instituciones financieras.</li>
+                    </ul>
+                    <div class="video-container">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/n_ZMQj09S6w" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Random Forest Regressor</h5>
+                    <p class="card-text">Random Forest Regressor es adecuado para problemas donde se necesita robustez y capacidad de generalización. Algunos casos de uso incluyen:</p>
+                    <ul>
+                        <li>Diagnóstico médico basado en múltiples variables.</li>
+                        <li>Predicción de precios de viviendas en el mercado inmobiliario.</li>
+                        <li>Modelado de series temporales para predecir el tráfico en una red de transporte.</li>
+                    </ul>
+                    <div class="video-container">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/X1MRbEnEq2s" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
