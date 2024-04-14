@@ -66,7 +66,10 @@
 <div class="container">
     <h1>Choose a Model</h1>
     <form action="{{ url_for('save_model') }}" method="post">
-        <label for="regressor">Select a Regressor:</label>
+        <label for="regressor_name">Select a Regressor:</label>
+        <input type="text" id="regressor_name" name="regressor_name">
+        <br>
+        <label for="regressor">Regressor Name:</label>
         <select name="regressor" id="regressor">
             {% for regressor in regressors %}
             <option value="{{ regressor }}">{{ regressor }}</option>
