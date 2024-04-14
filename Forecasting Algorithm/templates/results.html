@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Datasets</title>
+    <title>Forecast Results</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -36,6 +36,19 @@
             margin: auto;
             text-align: center;
         }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
     </style>
 </head>
 <body>
@@ -50,37 +63,33 @@
         <li><a href="{{ url_for('user_page') }}">User Page</a></li>
     </ul>
 </nav>
-<h1>Datasets</h1>
-<form action="{{ url_for('upload_csv') }}" method="post" enctype="multipart/form-data">
-    <input type="file" name="file" accept=".csv" required>
-    <br>
-    <label for="dataset_name">Dataset Name:</label>
-    <input type="text" id="dataset_name" name="dataset_name">
-    <br>
-    <button type="submit">Upload CSV</button>
-</form>
-<form action="{{ url_for('refresh_datasets') }}" method="get">
-    <button type="submit">Refresh Table</button>
-</form>
-<h2>Uploaded CSV Files</h2>
-<table>
+<h1>Forecast Results</h1>
+<table border="1">
     <tr>
-        <th>Name</th>
-        <th>File Name</th>
-        <th>Upload Date</th>
-        <th>Rows</th>
-        <th>Columns</th>
-        <th>Action</th>
+        <th>Forecast Root</th>
+        <th>Model Root</th>
+        <th>Dataset Root</th>
+        <th>Train Params</th>
+        <th>Date and Time</th>
+        <th>Metrics</th>
+        <th>Download CSV</th>
+        <th>View Plot</th>
     </tr>
-    {% for dataset in datasets %}
-    {% set dataset_dict = dataset.to_dict() %}
+    {% for forecast in forecasts %}
     <tr>
-        <td>{{ dataset_dict['name'] }}</td>
-        <td>{{ dataset_dict['original_name'] }}</td>
-        <td>{{ dataset_dict['upload_date'] }}</td>
-        <td>{{ dataset_dict['rows'] }}</td>
-        <td>{{ dataset_dict['columns'] }}</td>
-        <td><a href="{{ dataset_dict['file_url'] }}">Download CSV</a></td>
+        <td>{{ forecast.forecast_root }}</td>
+        <td>{{ forecast.model_root }}</td>
+        <td>{{ forecast.dataset_root }}</td>
+        <td>{{ forecast.train_params }}</td>
+        <td>{{ forecast.datetime }}</td>
+        <td class="metrics-cell">
+            <strong>MSE:</strong> {{ forecast.metrics.mse }}<br>
+            <strong>R2:</strong> {{ forecast.metrics.r2 }}<br>
+            <strong>MAE:</strong> {{ forecast.metrics.mae }}<br>
+            <strong>RMSE:</strong> {{ forecast.metrics.rmse }}
+        </td>
+        <td><a href="{{ forecast.csv_url }}">Download CSV</a></td>
+        <td><a href="{{ forecast.plot_url }}">View Plot</a></td>
     </tr>
     {% endfor %}
 </table>

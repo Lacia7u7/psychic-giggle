@@ -45,6 +45,8 @@
     <label for="steps">Number of Steps:</label>
     <input type="number" name="steps" id="steps" value="10" min="1">
     <br>
+    <input type="hidden" name="model_root" value="{{ model_root }}">
+    <input type="hidden" name="dataset_root" value="{{ dataset_root }}">
     <input type="hidden" name="model_url" value="{{ model_url }}">
     <input type="hidden" name="dataset_url" value="{{ dataset_url }}">
     <button type="submit">Submit</button>
