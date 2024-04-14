@@ -66,10 +66,10 @@
 <div class="container">
     <h1>Choose a Model</h1>
     <form action="{{ url_for('save_model') }}" method="post">
-        <label for="regressor_name">Select a Regressor:</label>
-        <input type="text" id="regressor_name" name="regressor_name">
+        <label for="model_name">Type your new Model Name:</label>
+        <input type="text" id="model_name" name="model_name">
         <br>
-        <label for="regressor">Regressor Name:</label>
+        <label for="regressor">Select a Regressor:</label>
         <select name="regressor" id="regressor">
             {% for regressor in regressors %}
             <option value="{{ regressor }}">{{ regressor }}</option>
@@ -87,6 +87,7 @@
     <h1>Saved Models</h1>
     <table>
         <tr>
+            <th>Model Name</th>
             <th>Regressor</th>
             <th>Parameters</th>
             <th>Train Parameters</th>
@@ -95,6 +96,7 @@
         </tr>
         {% for model in user_saved_models %}
         <tr>
+            <td>{{ model.name }}</td>
             <td>{{ model.regressor }}</td>
             <td>{{ model.params }}</td>
             <td>{{ model.train_params }}</td>

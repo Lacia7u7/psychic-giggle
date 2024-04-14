@@ -66,6 +66,7 @@
 <table>
     <tr>
         <th>Name</th>
+        <th>File Name</th>
         <th>Upload Date</th>
         <th>Rows</th>
         <th>Columns</th>
@@ -74,6 +75,7 @@
     {% for dataset in datasets %}
     {% set dataset_dict = dataset.to_dict() %}
     <tr>
+        <td>{{ dataset_dict['name'] }}</td>
         <td>{{ dataset_dict['original_name'] }}</td>
         <td>{{ dataset_dict['upload_date'] }}</td>
         <td>{{ dataset_dict['rows'] }}</td>
